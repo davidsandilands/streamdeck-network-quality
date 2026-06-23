@@ -1,0 +1,43 @@
+{
+	"Name": "Network Quality",
+	"Version": "0.1.0.0",
+	"Author": "David Sandilands",
+	"Actions": [
+		{
+			"Name": "Network Quality Test",
+			"UUID": "com.davidsandilands.network-quality.test",
+			"Icon": "imgs/actions/test/icon",
+			"Tooltip": "Run a macOS networkQuality test and show download, upload, and responsiveness.",
+			"PropertyInspectorPath": "ui/network-quality.html",
+			"Controllers": [
+				"Keypad"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/test/key",
+					"TitleAlignment": "middle"
+				}
+			]
+		}
+	],
+	"Category": "Network Quality",
+	"CategoryIcon": "imgs/plugin/category-icon",
+	"CodePath": "bin/plugin.js",
+	"Description": "Run Apple's built-in networkQuality test from your Stream Deck. Measures download, upload, and responsiveness (RPM). macOS only.",
+	"Icon": "imgs/plugin/marketplace",
+	"SDKVersion": 3,
+	"Software": {
+		"MinimumVersion": "7.1"
+	},
+	"OS": [
+		{
+			"Platform": "mac",
+			"MinimumVersion": "12"
+		}
+	],
+	"Nodejs": {
+		"Version": "20",
+		"Debug": "enabled"
+	},
+	"UUID": "com.davidsandilands.network-quality"
+}

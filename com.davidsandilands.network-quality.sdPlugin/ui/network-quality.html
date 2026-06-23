@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+	<title>Network Quality Settings</title>
+	<meta charset="utf-8" />
+	<script src="https://sdpi-components.dev/releases/v4/sdpi-components.js"></script>
+</head>
+
+<body>
+	<!-- Learn more about these components at https://sdpi-components.dev/docs/components -->
+	<sdpi-item label="Units">
+		<sdpi-select setting="units" default="auto">
+			<option value="auto">Auto (Mbps / Gbps)</option>
+			<option value="mbps">Mbps</option>
+			<option value="gbps">Gbps</option>
+		</sdpi-select>
+	</sdpi-item>
+
+	<sdpi-item label="Mode">
+		<sdpi-select setting="mode" default="parallel">
+			<option value="parallel">Parallel (download + upload)</option>
+			<option value="sequential">Sequential</option>
+		</sdpi-select>
+	</sdpi-item>
+
+	<sdpi-item label="Interface">
+		<sdpi-textfield setting="interface" placeholder="auto (e.g. en0)"></sdpi-textfield>
+	</sdpi-item>
+
+	<sdpi-item label="iCloud Private Relay">
+		<sdpi-checkbox setting="privateRelay"></sdpi-checkbox>
+	</sdpi-item>
+
+	<sdpi-item label="Auto-refresh (min)">
+		<sdpi-textfield setting="autoRefreshMinutes" type="number" min="0" step="1" placeholder="0 = off"></sdpi-textfield>
+	</sdpi-item>
+</body>
+
+</html>
