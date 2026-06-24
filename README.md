@@ -85,6 +85,18 @@ in case it's useful to you. There's no SLA, but bug reports and ideas are welcom
 - **Found a bug or have a request?** [Open an issue](https://github.com/davidsandilands/streamdeck-network-quality/issues).
 - **Want to help?** Pull requests are welcome.
 
+## Privacy
+
+The plugin collects no personal data; settings stay on your machine. Tests use
+Apple's `networkQuality`, which exchanges traffic with Apple's servers by design.
+See [PRIVACY.md](./PRIVACY.md).
+
+## Disclaimer
+
+Unofficial — not affiliated with, endorsed by, or sponsored by Apple or
+Elgato/Corsair. "networkQuality" is a macOS tool by Apple; "Stream Deck" is a
+trademark of Corsair/Elgato. All trademarks belong to their respective owners.
+
 ## License
 
 [MIT](./LICENSE) © David Sandilands
