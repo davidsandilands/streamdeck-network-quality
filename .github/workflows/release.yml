@@ -1,0 +1,40 @@
+name: Release
+
+# Tag a release to build the .streamDeckPlugin and publish a GitHub Release
+# with it (and the gallery images) attached:
+#   git tag v0.1.0 && git push origin v0.1.0
+#
+# The packaged file from the release is what you upload to the Elgato Maker
+# Console (maker.elgato.com) — submission itself is manual, as Elgato has no
+# publishing API.
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx streamdeck pack com.davidsandilands.network-quality.sdPlugin --force --no-update-check
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            com.davidsandilands.network-quality.streamDeckPlugin \
+            store-assets/hero.png \
+            store-assets/key-states.png \
+            store-assets/property-inspector.png \
+            --title "${{ github.ref_name }}" \
+            --generate-notes

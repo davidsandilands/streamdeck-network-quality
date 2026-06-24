@@ -45,6 +45,20 @@ Then drag **Network Quality → Network Quality Test** onto a key.
 
 Use `npm run watch` during development — it rebuilds and restarts the plugin on every change.
 
+### Releasing
+
+CI (`.github/workflows/ci.yml`) builds and validates on every push/PR. To cut a
+release, push a version tag:
+
+```bash
+git tag v0.1.0 && git push origin v0.1.0
+```
+
+`.github/workflows/release.yml` then builds, packs the `.streamDeckPlugin`, and
+publishes a GitHub Release with it and the gallery images attached. Upload that
+packaged file to the [Elgato Maker Console](https://maker.elgato.com) to submit a
+new version — Elgato has no publishing API, so that final submission is manual.
+
 ## Settings
 
 | Setting | Default | Notes |
