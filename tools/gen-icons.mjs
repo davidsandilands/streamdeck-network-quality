@@ -18,6 +18,7 @@ const BG = [21, 21, 30];
 const RING = [78, 205, 196];
 const NEEDLE = [255, 107, 107];
 const HUB = [236, 236, 241];
+const WHITE = [255, 255, 255];
 
 /** Signed distance to a rounded box centered in the unit square. */
 function roundedBoxSdf(x, y, radius) {
@@ -43,19 +44,32 @@ function distToSegment(px, py, ax, ay, bx, by) {
 const TAU = Math.PI * 2;
 const deg = (d) => (d * Math.PI) / 180;
 
-/** Color (with alpha) for a normalized point, before downsampling. */
-function sample(nx, ny) {
-	// Background (transparent outside the rounded square).
-	if (roundedBoxSdf(nx, ny, 0.16) > 0) {
-		return [0, 0, 0, 0];
+/**
+ * Color (with alpha) for a normalized point, before downsampling.
+ * `variant` is "color" (rounded dark tile, teal/red gauge) or "mono"
+ * (white gauge on a transparent background, per Marketplace icon rules).
+ */
+function sample(nx, ny, variant) {
+	const mono = variant === "mono";
+
+	let color = [0, 0, 0, 0];
+	if (!mono) {
+		// Background (transparent outside the rounded square).
+		if (roundedBoxSdf(nx, ny, 0.16) > 0) {
+			return [0, 0, 0, 0];
+		}
+		color = [...BG, 255];
 	}
+
+	const ringCol = mono ? WHITE : RING;
+	const needleCol = mono ? WHITE : NEEDLE;
+	const hubCol = mono ? WHITE : HUB;
 
 	const cx = 0.5;
 	const cy = 0.56;
 	const dx = nx - cx;
 	const dy = ny - cy;
 	const dist = Math.hypot(dx, dy);
-	let color = [...BG, 255];
 
 	// Gauge ring: 270deg arc, 90deg gap at the bottom.
 	const ringR = 0.33;
@@ -66,7 +80,7 @@ function sample(nx, ny) {
 		const gapHalf = deg(45);
 		const bottom = deg(90);
 		if (Math.abs(ang - bottom) > gapHalf) {
-			color = [...RING, 255];
+			color = [...ringCol, 255];
 		}
 	}
 
@@ -75,19 +89,19 @@ function sample(nx, ny) {
 	const tipX = cx + Math.cos(ang) * 0.27;
 	const tipY = cy + Math.sin(ang) * 0.27;
 	if (distToSegment(nx, ny, cx, cy, tipX, tipY) <= 0.028) {
-		color = [...NEEDLE, 255];
+		color = [...needleCol, 255];
 	}
 
 	// Center hub.
 	if (dist <= 0.06) {
-		color = [...HUB, 255];
+		color = [...hubCol, 255];
 	}
 
 	return color;
 }
 
 /** Render an anti-aliased RGBA buffer at the requested size. */
-function render(size) {
+function render(size, variant) {
 	const hi = size * SS;
 	const out = Buffer.alloc(size * size * 4);
 
@@ -101,7 +115,7 @@ function render(size) {
 				for (let sx = 0; sx < SS; sx++) {
 					const nx = (x * SS + sx + 0.5) / hi;
 					const ny = (y * SS + sy + 0.5) / hi;
-					const [cr, cg, cb, ca] = sample(nx, ny);
+					const [cr, cg, cb, ca] = sample(nx, ny, variant);
 					const af = ca / 255;
 					r += cr * af; // premultiplied
 					g += cg * af;
@@ -178,19 +192,21 @@ function encodePng(size, rgba) {
 
 // --- Output ---------------------------------------------------------------
 
-// [path without extension, @1x size]; @2x is generated at double size.
+// [path without extension, @1x size, variant]; @2x is generated at double size.
+// Marketplace rules: category icon is monochrome/transparent, action icon is a
+// white stroke; the plugin "marketplace" icon and the key image stay full color.
 const TARGETS = [
-	["imgs/plugin/marketplace", 256],
-	["imgs/plugin/category-icon", 28],
-	["imgs/actions/test/icon", 20],
-	["imgs/actions/test/key", 72]
+	["imgs/plugin/marketplace", 256, "color"],
+	["imgs/plugin/category-icon", 28, "mono"],
+	["imgs/actions/test/icon", 20, "mono"],
+	["imgs/actions/test/key", 72, "color"]
 ];
 
-for (const [rel, size] of TARGETS) {
+for (const [rel, size, variant] of TARGETS) {
 	for (const [suffix, dim] of [["", size], ["@2x", size * 2]]) {
 		const file = resolve(ROOT, PLUGIN, `${rel}${suffix}.png`);
 		mkdirSync(dirname(file), { recursive: true });
-		writeFileSync(file, encodePng(dim, render(dim)));
-		console.log(`wrote ${rel}${suffix}.png (${dim}x${dim})`);
+		writeFileSync(file, encodePng(dim, render(dim, variant)));
+		console.log(`wrote ${rel}${suffix}.png (${dim}x${dim}, ${variant})`);
 	}
 }
