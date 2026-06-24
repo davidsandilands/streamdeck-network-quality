@@ -77,6 +77,14 @@ com.davidsandilands.network-quality.sdPlugin/
   imgs/                # generated icons
 ```
 
+## Support
+
+This is a personal, open-source project — built to scratch my own itch and shared
+in case it's useful to you. There's no SLA, but bug reports and ideas are welcome:
+
+- **Found a bug or have a request?** [Open an issue](https://github.com/davidsandilands/streamdeck-network-quality/issues).
+- **Want to help?** Pull requests are welcome.
+
 ## License
 
 [MIT](./LICENSE) © David Sandilands
