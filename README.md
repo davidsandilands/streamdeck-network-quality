@@ -48,7 +48,7 @@ Use `npm run watch` during development — it rebuilds and restarts the plugin o
 ### Releasing
 
 CI (`.github/workflows/ci.yml`) builds and validates on every push/PR. To cut a
-release, push a version tag:
+release: add an entry to [CHANGELOG.md](./CHANGELOG.md), then push a version tag:
 
 ```bash
 git tag v0.1.0 && git push origin v0.1.0
