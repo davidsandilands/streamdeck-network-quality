@@ -23,7 +23,7 @@
 	"Category": "Network Quality",
 	"CategoryIcon": "imgs/plugin/category-icon",
 	"CodePath": "bin/plugin.js",
-	"Description": "Run Apple's built-in networkQuality test from your Stream Deck. Measures download, upload, and responsiveness (RPM). macOS only.",
+	"Description": "Run Apple's built-in networkQuality speed test right from your Stream Deck. Press a key to measure your internet download speed, upload speed, and responsiveness (RPM) — latency under load — with color-coded results shown directly on the key. It's free and open source, with no accounts, API keys, or third-party servers.\n\nFeatures:\n• One-press testing with a live progress animation (~15 seconds)\n• Download, upload, and responsiveness (RPM) at a glance, color-coded for quick reading\n• Auto-refresh on a configurable interval (every N minutes)\n• Choose units (Auto / Mbps / Gbps), parallel or sequential mode, and a specific network interface\n• Optional routing through iCloud Private Relay\n• Latest results stay on the key after each test, so your numbers are always visible\n\nRequirements:\n• macOS 12 (Monterey) or later — uses the networkQuality tool built into macOS\n• Stream Deck app 7.1 or later",
 	"Icon": "imgs/plugin/marketplace",
 	"SDKVersion": 3,
 	"Software": {
