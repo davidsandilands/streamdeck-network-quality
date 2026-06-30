@@ -27,7 +27,7 @@ but there's no free Stream Deck plugin for it — only a paid/Windows option. Th
 ## Install
 
 ### From the Marketplace
-Coming soon.
+Install from the [Elgato Marketplace](https://marketplace.elgato.com/product/network-quality-8bc856af-0cf3-4eb6-b050-22f3ca0458b3).
 
 ### From source (development)
 
