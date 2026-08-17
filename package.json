@@ -10,7 +10,7 @@
 		"watch": "rollup -c -w --watch.onEnd=\"streamdeck restart com.davidsandilands.network-quality\""
 	},
 	"devDependencies": {
-		"@elgato/cli": "^1.7.4",
+		"@elgato/cli": "^1.8.1",
 		"@rollup/plugin-commonjs": "^29.0.2",
 		"@rollup/plugin-node-resolve": "^16.0.3",
 		"@rollup/plugin-terser": "^1.0.0",
