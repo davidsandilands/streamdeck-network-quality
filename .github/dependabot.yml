@@ -7,6 +7,15 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - "dependencies"
+    groups:
+      # Build-toolchain bumps (rollup, typescript, @types/*, @elgato/cli) arrive
+      # as a single weekly PR. Majors are excluded so they keep their own PR and
+      # get reviewed individually.
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -15,3 +24,7 @@ updates:
     labels:
       - "dependencies"
       - "github-actions"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
