@@ -25,6 +25,6 @@
 		"@elgato/streamdeck": "^2.1.0"
 	},
 	"overrides": {
-		"brace-expansion": "^2.1.2"
+		"brace-expansion": "^2.1.7"
 	}
 }
