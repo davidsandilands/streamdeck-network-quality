@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Updated `@elgato/streamdeck` from 2.1.0 to 3.0.1 (Stream Deck SDK v3). No
+  change to plugin behavior, and the supported Stream Deck version range is
+  unchanged at 7.1 or later.
+
 ## [0.1.0] - 2026-06-24
 
 Initial release. 🎉
