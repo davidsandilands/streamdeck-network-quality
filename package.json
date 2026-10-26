@@ -10,14 +10,14 @@
 		"watch": "rollup -c -w --watch.onEnd=\"streamdeck restart com.davidsandilands.network-quality\""
 	},
 	"devDependencies": {
-		"@elgato/cli": "^1.10.1",
+		"@elgato/cli": "^1.10.3",
 		"@rollup/plugin-commonjs": "^29.0.2",
 		"@rollup/plugin-node-resolve": "^16.0.3",
-		"@rollup/plugin-terser": "^1.0.0",
-		"@rollup/plugin-typescript": "^12.1.0",
+		"@rollup/plugin-terser": "^1.0.2",
+		"@rollup/plugin-typescript": "^12.3.1",
 		"@tsconfig/node20": "^20.1.10",
-		"@types/node": "~26.6.4",
-		"rollup": "^4.64.0",
+		"@types/node": "~26.6.5",
+		"rollup": "^4.65.0",
 		"tslib": "^2.6.2",
 		"typescript": "^5.2.2"
 	},
